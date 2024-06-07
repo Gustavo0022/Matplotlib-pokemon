@@ -49,7 +49,7 @@ def grafico_barras():
     plt.title('Distribuição de pokémons por tipo')
     plt.xlabel('Tipo')
     plt.ylabel('Número de pokémon')
-    plt.xticks(rotation=90)
+    plt.xticks(rotation=45)
     plt.grid(axis="y")
     st.pyplot(fig)
 
@@ -73,8 +73,18 @@ def grafico_boxplot():
     stats = data[['HP', 'Attack', 'Defense','Sp. Atk', 'Sp. Def','Speed']]
     stats.boxplot()
     plt.title('Distribuição das stats de pokemon')
+    plt.xlabel('Estatísticas')
+    plt.ylabel('Pokémons')
     st.pyplot(fig)
 
+    with st.expander("Código:"):
+      with st.echo():
+        fig = plt.figure(figsize= (10,10))
+        stats = data[['HP', 'Attack', 'Defense','Sp. Atk', 'Sp. Def','Speed']]
+        stats.boxplot()
+        plt.title('Distribuição das stats de pokemon')
+        plt.xlabel('Estatísticas')
+        plt.ylabel('Pokémons')
 def grafico_pizza():
 
     st.title("Gráfico de pizza")
@@ -85,6 +95,17 @@ def grafico_pizza():
 
     plt.pie(legendary_counts, labels = ['Gen 1', 'Gen 2', 'Gen 3', 'Gen 4', 'Gen 5', 'Gen 6', 'Gen 7', 'Gen 8', 'Gen 9'], autopct="%1.1f%%",startangle=140)
     st.pyplot(fig)
+
+    with st.expander("Código:"):
+      with st.echo():   
+        st.title("Gráfico de pizza")
+        dados = carregar_dados()
+        legendary_counts = dados['Generation'].value_counts()
+
+        fig = plt.figure(figsize=(10,10))
+
+        plt.pie(legendary_counts, labels = ['Gen 1', 'Gen 2', 'Gen 3', 'Gen 4', 'Gen 5', 'Gen 6', 'Gen 7', 'Gen 8', 'Gen 9'], autopct="%1.1f%%",startangle=140)
+        
 def main():
     st.sidebar.title("Base de dados pokémon")
     pages = {
