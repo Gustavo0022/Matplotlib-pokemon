@@ -28,7 +28,6 @@ def grafico_linhas():
 
     with st.expander("Código:"):
         with st.echo():
-            data = carregar_dados()
             fig = plt.figure(figsize=(10,10))
             data.groupby("Generation")["HP"].mean().plot(marker="o")
             plt.title("Tendência de HP dos pokémons ao longo das gerações")
@@ -98,10 +97,8 @@ def grafico_pizza():
 
     with st.expander("Código:"):
       with st.echo():   
-        dados = carregar_dados()
         legendary_counts = dados['Generation'].value_counts()
         fig = plt.figure(figsize=(10,10))
-
         plt.pie(legendary_counts, labels = ['Gen 1', 'Gen 2', 'Gen 3', 'Gen 4', 'Gen 5', 'Gen 6', 'Gen 7', 'Gen 8', 'Gen 9'], autopct="%1.1f%%",startangle=140)
         
 def main():
